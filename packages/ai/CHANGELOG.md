@@ -1,5 +1,14 @@
 # ai
 
+## 7.0.173
+
+### Patch Changes
+
+- f6809e3: fix(workflow): align the `prepareStep` results of `WorkflowAgent` with `ToolLoopAgent`. Returned `instructions` (or the deprecated `system`) replace the instructions of the step and carry forward to later steps, returned `providerOptions` are merged with the agent options, and returned `headers` are merged over the headers of the call.
+- f1de9cb: feat(workflow): support the `timeout` object in `WorkflowAgent`
+
+  `generate()` and `stream()` accept `timeout: { totalMs, stepMs, firstChunkMs, chunkMs }` in addition to a number. `stepMs` limits each model call. In `stream()`, `firstChunkMs` and `chunkMs` limit the wait for model output. Invalid timeout values are rejected with an `InvalidArgumentError`. A timeout now also ends a model step when the provider stream ignores the abort signal.
+
 ## 7.0.172
 
 ### Patch Changes

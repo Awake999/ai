@@ -1,5 +1,21 @@
 # @ai-sdk/workflow
 
+## 2.0.105
+
+### Patch Changes
+
+- ff89832: fix(workflow): call `onAbort` instead of `onError` when a `WorkflowAgent` call is aborted during a model step with a custom abort reason. `generate()` still rejects with that reason. `stream()` now resolves with the steps that finished, as it does for an abort without a reason.
+- f6809e3: fix(workflow): align the `prepareStep` results of `WorkflowAgent` with `ToolLoopAgent`. Returned `instructions` (or the deprecated `system`) replace the instructions of the step and carry forward to later steps, returned `providerOptions` are merged with the agent options, and returned `headers` are merged over the headers of the call.
+- 453d880: fix(workflow): call the `onInputAvailable` tool hook in `stream()` when the provider sends a tool call without streaming its input first.
+- 5c0e984: fix(workflow): report the provider name and model ID of the called model in the steps of `WorkflowAgent.stream()` results, matching `ToolLoopAgent` and `WorkflowAgent.generate()`
+- f1de9cb: feat(workflow): support the `timeout` object in `WorkflowAgent`
+
+  `generate()` and `stream()` accept `timeout: { totalMs, stepMs, firstChunkMs, chunkMs }` in addition to a number. `stepMs` limits each model call. In `stream()`, `firstChunkMs` and `chunkMs` limit the wait for model output. Invalid timeout values are rejected with an `InvalidArgumentError`. A timeout now also ends a model step when the provider stream ignores the abort signal.
+
+- Updated dependencies [f6809e3]
+- Updated dependencies [f1de9cb]
+  - ai@7.0.173
+
 ## 2.0.104
 
 ### Patch Changes

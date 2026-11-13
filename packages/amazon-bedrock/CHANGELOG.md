@@ -1,5 +1,14 @@
 # @ai-sdk/amazon-bedrock
 
+## 5.0.142
+
+### Patch Changes
+
+- f5fc6ba: Derive known model ID suggestions from each provider's model catalog declarations so catalog updates automatically update autocomplete, while preserving existing suggestions, endpoint-specific model lists, and support for custom model IDs.
+- Updated dependencies [f5fc6ba]
+  - @ai-sdk/anthropic@4.0.105
+  - @ai-sdk/openai@4.0.118
+
 ## 5.0.141
 
 ### Patch Changes
